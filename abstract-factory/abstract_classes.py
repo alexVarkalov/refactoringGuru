@@ -10,6 +10,10 @@ class AbstractSofa(ABC):
     def rest(self) -> str:
         pass
 
+    def print_data(self):
+        self.rest()
+
+
 
 class AbstractChair(ABC):
     @abstractmethod
@@ -19,6 +23,9 @@ class AbstractChair(ABC):
     @abstractmethod
     def sit(self) -> None:
         pass
+
+    def print_data(self):
+        self.sit()
 
 
 class AbstractTable(ABC):
@@ -33,6 +40,9 @@ class AbstractTable(ABC):
     @abstractmethod
     def kitchen_set(self, chair1: AbstractChair, chair2: AbstractChair) -> None:
         pass
+
+    def print_data(self):
+        self.dinner()
 
 
 class AbstractFurnitureFactory(ABC):
