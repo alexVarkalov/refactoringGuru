@@ -1,8 +1,12 @@
 import platform
 
+from abstract_classes.messages import AbstractMessagesFactory
+from abstract_classes.furniture import (
+    AbstractFurniture,
+    AbstractFurnitureFactory,
+)
 from linux_messages import LinuxMessagesFactory
 from windows_messages import WindowsMessagesFactory
-from abstract_classes import AbstractMessagesFactory, AbstractFurnitureFactory
 from old_style_factory import OldStyleFactory
 from modern_factory import ModernFactory
 from future_factory import FutureFactory
@@ -22,7 +26,7 @@ def get_furniture_factory(adjective) -> AbstractFurnitureFactory:
     return furniture_factory
 
 
-def get_product(factory: AbstractFurnitureFactory, noun):
+def get_product(factory: AbstractFurnitureFactory, noun) -> AbstractFurniture:
     if noun == 'диван':
         product = factory.create_sofa('Alex', 'mid')
     elif noun == 'стол':
@@ -30,15 +34,16 @@ def get_product(factory: AbstractFurnitureFactory, noun):
     elif noun == 'стул':
         product = factory.create_chair('Alex', 'mid')
     else:
-        raise Exception('Wrong nount')
+        raise Exception('Wrong noun')
     return product
 
 
 def main(messages_factory: AbstractMessagesFactory) -> None:
     if len(sys.argv) != 4:
         raise Exception('Wrong amount of params, need three words')
-    *_, adjective, noun =  sys.argv
-    name = input('Input your name: ')
+    *_, adjective, noun = sys.argv
+    # name = input('Input your name: ')
+    name = 'Alex'
     greetings = messages_factory.create_greetings(name)
     greetings.hello()
     furniture_factory = get_furniture_factory(adjective)
@@ -47,7 +52,6 @@ def main(messages_factory: AbstractMessagesFactory) -> None:
 
 
 if __name__ == "__main__":
-
     client_os = platform.system()
     if client_os == 'Linux':
         main(LinuxMessagesFactory())

@@ -1,4 +1,4 @@
-from abstract_classes import (
+from abstract_classes.messages import (
     AbstractMessagesFactory,
     AbstractGreetings,
     AbstractFarewell,
@@ -6,25 +6,25 @@ from abstract_classes import (
 
 
 class WindowsGreetings(AbstractGreetings):
-    def __init__(self, name):
+    def __init__(self, name:str) -> None:
         self.name = name
 
-    def hello(self):
+    def hello(self) -> None:
         print(f'{self.name}, choose quick or get outta here')
 
 
 class WindowsFarewell(AbstractFarewell):
-    def __init__(self, name):
+    def __init__(self, name:str) -> None:
         self.name = name
 
-    def bye(self):
+    def bye(self) -> None:
         print(f'From this moment {self.name} in a blacklist')
 
 
 class WindowsMessagesFactory(AbstractMessagesFactory):
 
-    def create_greetings(self, name) -> WindowsGreetings:
+    def create_greetings(self, name) -> AbstractGreetings:
         return WindowsGreetings(name)
 
-    def create_farewell(self, name) -> WindowsFarewell:
+    def create_farewell(self, name) -> AbstractFarewell:
         return WindowsFarewell(name)
