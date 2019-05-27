@@ -1,4 +1,4 @@
-from builder.abstract_classes import AbstractPhone
+from abstract_classes import AbstractPhone
 
 
 class SonyPhone(AbstractPhone):

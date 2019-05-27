@@ -1,4 +1,4 @@
-from abstract_classes.furniture import (
+from abstract_furniture import (
     AbstractFurnitureFactory,
     AbstractSofa,
     AbstractTable,

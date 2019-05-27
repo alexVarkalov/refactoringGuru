@@ -1,7 +1,7 @@
 import platform
 
-from abstract_classes.messages import AbstractMessagesFactory
-from abstract_classes.furniture import (
+from abstract_messages import AbstractMessagesFactory
+from abstract_furniture import (
     AbstractFurniture,
     AbstractFurnitureFactory,
 )

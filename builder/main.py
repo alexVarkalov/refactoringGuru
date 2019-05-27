@@ -1,6 +1,6 @@
-from builder.director import Director
-from builder.iphone_builder import IPhoneBuilder
-from builder.sony_phone_builder import SonyPhoneBuilder
+from director import Director
+from iphone_builder import IPhoneBuilder
+from sony_phone_builder import SonyPhoneBuilder
 
 if __name__ == '__main__':
     builder = SonyPhoneBuilder()
