@@ -13,11 +13,6 @@ class AbstractPhone(ABC):
 
 
 class AbstractPhoneBuilder(ABC):
-    @property
-    @abstractmethod
-    def phone(self):
-        pass
-
     @abstractmethod
     def add_cpu(self):
         pass
