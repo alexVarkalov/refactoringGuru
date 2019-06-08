@@ -1,4 +1,4 @@
-from abstract_classes import AbstractPhoneBuilder
+from .abstract_builder import AbstractPhoneBuilder
 
 
 class Director:

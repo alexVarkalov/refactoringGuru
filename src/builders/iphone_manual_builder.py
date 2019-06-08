@@ -1,15 +1,4 @@
-from abstract_classes import AbstractPhoneBuilder
-from components import (
-    Camera,
-    CPU,
-    Screen,
-    Case,
-    SelfieCamera,
-    RAM,
-    Memory,
-    OS,
-)
-from phones import IPhone
+from .abstract_builder import AbstractPhoneBuilder
 
 
 class IPhoneManualBuilder(AbstractPhoneBuilder):

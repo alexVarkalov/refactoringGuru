@@ -1,5 +1,5 @@
-from abstract_classes import AbstractPhoneBuilder
-from components import (
+from .abstract_builder import AbstractPhoneBuilder
+from phones.components import (
     Camera,
     CPU,
     Screen,
@@ -9,7 +9,7 @@ from components import (
     Memory,
     OS,
 )
-from phones import IPhone
+from phones.i_phone import IPhone
 
 
 class IPhoneBuilder(AbstractPhoneBuilder):
