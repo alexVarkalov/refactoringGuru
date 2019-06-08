@@ -1,4 +1,4 @@
-from abstract_messages import (
+from messages_factories.abstract_messages import (
     AbstractMessagesFactory,
     AbstractGreetings,
     AbstractFarewell,

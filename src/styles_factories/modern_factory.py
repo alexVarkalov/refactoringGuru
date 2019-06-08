@@ -1,4 +1,4 @@
-from abstract_furniture import (
+from styles_factories.abstract_furniture import (
     AbstractFurnitureFactory,
     AbstractSofa,
     AbstractTable,

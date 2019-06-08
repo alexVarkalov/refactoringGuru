@@ -1,0 +1,3 @@
+from .abstract_messages import AbstractMessagesFactory
+from .linux_messages import LinuxMessagesFactory
+from .windows_messages import WindowsMessagesFactory

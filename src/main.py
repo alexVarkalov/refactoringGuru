@@ -1,17 +1,20 @@
 import platform
+import sys
 
-from abstract_messages import AbstractMessagesFactory
-from abstract_furniture import (
+from messages_factories import (
+    AbstractMessagesFactory,
+    LinuxMessagesFactory,
+    WindowsMessagesFactory,
+)
+from styles_factories.abstract_furniture import (
     AbstractFurniture,
     AbstractFurnitureFactory,
 )
-from linux_messages import LinuxMessagesFactory
-from windows_messages import WindowsMessagesFactory
-from old_style_factory import OldStyleFactory
-from modern_factory import ModernFactory
-from future_factory import FutureFactory
-
-import sys
+from styles_factories import (
+    OldStyleFactory,
+    ModernFactory,
+    FutureFactory,
+)
 
 
 def get_furniture_factory(adjective) -> AbstractFurnitureFactory:
