@@ -2,8 +2,8 @@
 
 ## Source
 
-https://refactoring.guru/
+https://refactoring.guru/en/design-patterns/chain-of-responsibility
 
-## Instruction
+## Description
 
-checkout to the needed pattern
+TODO
