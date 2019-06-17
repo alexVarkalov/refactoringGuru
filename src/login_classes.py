@@ -38,7 +38,7 @@ class AbstractLogin(LoginHandler):
     def handle(self, request):
         if self._next_handler:
             return self._next_handler.handle(request)
-        return None
+        return request
 
 
 class Identification(AbstractLogin):
@@ -65,11 +65,15 @@ class Authorization(AbstractLogin):
         login = request.get('login')
         customer = data.get(login)
         role = customer.get('role')
+        #todo add other chain for permissions
         if role == 'Admin':
-            return ['Create', 'Read', 'Update', 'Delete']
+            permissions = ['Create', 'Read', 'Update', 'Delete']
         elif role == 'Moderator':
-            return ['Create', 'Read']
+            permissions = ['Create', 'Read']
         elif role == 'User':
-            return ['Read']
+            permissions = ['Read']
         else:
-            return []
+            permissions = []
+        request['permissions'] = permissions
+        return super().handle(request)
+
