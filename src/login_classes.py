@@ -38,42 +38,58 @@ class AbstractLogin(LoginHandler):
     def handle(self, request):
         if self._next_handler:
             return self._next_handler.handle(request)
-        return request
+        return None
 
 
 class Identification(AbstractLogin):
     def handle(self, request):
         login = request.get('login')
         if login in data:
+            request['identified'] = True
             return super().handle(request)
         raise Exception('There is no customer with this login!')
 
 
 class Authentication(AbstractLogin):
     def handle(self, request):
+        if not request.get('identified', False):
+            raise Exception('Identification is required')
+
         login = request.get('login')
         password = request.get('password')
         customer = data.get(login)
 
         if password == customer['password']:
+            request['authenticated'] = True
             return super().handle(request)
         raise Exception('Wrong password')
 
 
-class Authorization(AbstractLogin):
+class AdminAuthorization(AbstractLogin):
     def handle(self, request):
         login = request.get('login')
         customer = data.get(login)
         role = customer.get('role')
-        #todo add other chain for permissions
-        if role == 'Admin':
-            permissions = ['Create', 'Read', 'Update', 'Delete']
-        elif role == 'Moderator':
-            permissions = ['Create', 'Read']
-        elif role == 'User':
-            permissions = ['Read']
-        else:
-            permissions = []
-        request['permissions'] = permissions
+        if role != 'Admin':
+            raise Exception('Access denied')
         return super().handle(request)
 
+
+class ModeratorAuthorization(AbstractLogin):
+    def handle(self, request):
+        login = request.get('login')
+        customer = data.get(login)
+        role = customer.get('role')
+        if role != 'Moderator':
+            raise Exception('Access denied')
+        return super().handle(request)
+
+
+class UserAuthorization(AbstractLogin):
+    def handle(self, request):
+        login = request.get('login')
+        customer = data.get(login)
+        role = customer.get('role')
+        if role != 'User':
+            raise Exception('Access denied')
+        return super().handle(request)
